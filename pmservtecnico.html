@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>PM Servicio Técnico · eficiencia en climatización</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black-hole: #0c1424;
+      --steel-abs: #1a2540;
+      --steel-dark: #25324f;
+      --steel-mid: #30416a;
+      --pm-blue: #1e3a8a;
+      --pm-yellow: #fbbf24;
+      --pm-yellow-glow: 0 0 20px rgba(251, 191, 36, 0.65);
+      --pm-blue-glow: 0 0 20px rgba(30, 58, 138, 0.65);
+      --glass-edge: rgba(255, 255, 255, 0.04);
+      --text-primary: #f0f3f8;
+      --text-secondary: #a6b0c0;
+      --whatsapp-solid: #25d366;
+      --whatsapp-dim: #128c7e;
+      --panel-bg: rgba(12, 20, 36, 0.85);
+      --scanner-line: rgba(251, 191, 36, 0.25);
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--black-hole);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .hero p, .service-btn, .modal-title, .trust-title, .section-title, .protocol-step h3, .sticky-cta {
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--pm-yellow), transparent);
+      filter: blur(6px);
+      opacity: 0.3;
+      z-index: 9999;
+      animation: scanMotion 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scanMotion {
+      0% { top: -10px; opacity: 0.1; }
+      10% { top: 10%; opacity: 0.4; }
+      20% { top: 30%; opacity: 0.4; }
+      30% { top: 50%; opacity: 0.6; }
+      40% { top: 70%; opacity: 0.4; }
+      50% { top: 90%; opacity: 0.3; }
+      60% { top: 70%; opacity: 0.2; }
+      70% { top: 50%; opacity: 0.3; }
+      80% { top: 30%; opacity: 0.2; }
+      90% { top: 10%; opacity: 0.2; }
+      100% { top: -10px; opacity: 0.1; }
+    }
+
+    .header {
+      padding: 24px 20px 10px;
+      text-align: center;
+      background: #0c1424;
+      border-bottom: 1px solid var(--pm-yellow);
+      box-shadow: 0 10px 30px -15px #000, inset 0 1px 0 rgba(255,255,255,0.02);
+      position: relative;
+      z-index: 5;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 1px;
+    }
+    .logo-text span {
+      color: var(--pm-yellow);
+    }
+    .subhead {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 5px;
+    }
+
+    .hero {
+      padding: 50px 20px 40px;
+      text-align: center;
+      background: radial-gradient(ellipse at 20% 30%, #1a2a48, #020814 90%);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 10vw, 4rem);
+      font-weight: 600;
+      line-height: 1.0;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-wrap: balance;
+      background: linear-gradient(135deg, #fff 30%, var(--pm-blue) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(30,58,138,0.5));
+    }
+
+    .hero h1 span {
+      display: block;
+      font-size: 0.5em;
+      font-weight: 400;
+      letter-spacing: 6px;
+      color: var(--text-secondary);
+      background: none;
+      -webkit-text-fill-color: #b0c0d0;
+      text-shadow: 0 0 10px var(--pm-blue);
+      margin-top: 16px;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin: 36px 0 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(251,191,36,0.5);
+      padding: 10px 24px;
+      border-radius: 60px;
+      border: 1px solid var(--pm-yellow);
+      box-shadow: 0 0 30px rgba(251,191,36,0.2);
+      backdrop-filter: blur(8px);
+      color: #e0f0ff;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      max-width: 1100px;
+      margin: 50px auto 0;
+      padding: 0 20px;
+    }
+
+    .service-btn {
+      background: rgba(26, 37, 64, 0.7);
+      backdrop-filter: blur(16px) saturate(200%);
+      -webkit-backdrop-filter: blur(16px) saturate(200%);
+      border: 1px solid var(--glass-edge);
+      border-left: 3px solid var(--pm-blue);
+      padding: 26px 22px;
+      border-radius: 32px;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.22, 0.97, 0.3, 1.1);
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 30px 35px -20px #000, 0 0 0 1px rgba(251,191,36,0) inset;
+      transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1);
+      z-index: 2;
+    }
+
+    .service-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(251,191,36,0.1), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s;
+      pointer-events: none;
+    }
+
+    .service-btn:hover::before {
+      left: 150%;
+    }
+
+    .service-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--pm-yellow), transparent);
+      filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-btn:hover::after {
+      opacity: 0.8;
+      animation: scanPulse 2s infinite;
+    }
+
+    @keyframes scanPulse {
+      0% { opacity: 0.4; bottom: 0; }
+      50% { opacity: 1; bottom: 5px; }
+      100% { opacity: 0.4; bottom: 0; }
+    }
+
+    .service-btn:hover {
+      transform: perspective(800px) rotateX(1.5deg) rotateY(-0.8deg) scale(1.03) translateY(-6px);
+      border-left: 3px solid var(--pm-yellow);
+      box-shadow: 0 30px 40px -15px black, 0 0 40px var(--pm-yellow);
+      background: rgba(37, 50, 79, 0.9);
+    }
+
+    .service-icon {
+      font-size: 2.8rem;
+      filter: drop-shadow(0 0 10px var(--pm-blue));
+    }
+
+    .service-btn small {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .services-detail {
+      padding: 70px 20px;
+      background: #0c1424;
+    }
+    
+    .section-title {
+      font-size: 2.6rem;
+      text-align: center;
+      background: linear-gradient(135deg, #fff, var(--pm-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      color: var(--pm-yellow);
+      font-size: 1.3rem;
+      letter-spacing: 3px;
+      margin-bottom: 50px;
+      border-bottom: 1px solid rgba(251,191,36,0.2);
+      display: inline-block;
+      padding-bottom: 8px;
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-list {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .service-card {
+      background: rgba(26, 37, 64, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid #2a3a5a;
+      border-left: 6px solid var(--pm-blue);
+      border-radius: 40px;
+      padding: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 20px -15px #000;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .service-card.expanded {
+      background: rgba(37, 50, 79, 0.9);
+      border-left: 8px solid var(--pm-yellow);
+      box-shadow: 0 0 40px rgba(251,191,36,0.2);
+    }
+
+    .card-header {
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .card-header .service-item-icon {
+      font-size: 2.5rem;
+      min-width: 50px;
+      text-align: center;
+      color: var(--pm-blue);
+    }
+    
+    .card-header h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+    }
+    
+    .card-header p {
+      color: #a6b0c0;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    .technical-layer {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s;
+      padding: 0 24px;
+      background: rgba(0,0,0,0.2);
+    }
+    
+    .service-card.expanded .technical-layer {
+      max-height: 300px;
+      opacity: 1;
+      padding: 0 24px 24px 24px;
+    }
+
+    .subservice-chip {
+      background: rgba(251,191,36,0.08);
+      border: 1px solid rgba(251,191,36,0.2);
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.9rem;
+      color: #cce0ff;
+      transition: 0.15s;
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .subservice-chip:hover {
+      background: rgba(251,191,36,0.15);
+      border-color: var(--pm-yellow);
+      color: white;
+    }
+
+    .card-cta {
+      background: transparent;
+      border: 1px solid var(--pm-yellow);
+      color: var(--pm-yellow);
+      padding: 12px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .card-cta:hover {
+      background: var(--pm-yellow);
+      color: #0c1424;
+      box-shadow: 0 0 30px var(--pm-yellow);
+    }
+
+    .trust-section {
+      padding: 80px 20px;
+      background: #0c1424;
+      position: relative;
+    }
+
+    .trust-title {
+      font-size: 2.6rem;
+      font-weight: 550;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      color: white;
+    }
+    .trust-title:before, .trust-title:after {
+      content: '';
+      height: 3px;
+      width: 90px;
+      background: linear-gradient(90deg, transparent, var(--pm-yellow), transparent);
+      filter: blur(1px);
+    }
+
+    .protocol-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .protocol-step {
+      background: #1a2540;
+      border: 1px solid #30416a;
+      border-radius: 40px;
+      padding: 38px 28px;
+      flex: 1 1 260px;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+      box-shadow: 0 35px 45px -35px black, 0 0 0 1px rgba(251,191,36,0) inset;
+      position: relative;
+      text-align: center;
+    }
+    .protocol-step:hover {
+      border-color: var(--pm-yellow);
+      box-shadow: 0 0 50px rgba(251,191,36,0.2), 0 25px 30px -20px black;
+      transform: translateY(-8px);
+    }
+    .step-icon { font-size: 3.2rem; filter: drop-shadow(0 0 16px var(--pm-yellow)); }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(24px) saturate(250%);
+      -webkit-backdrop-filter: blur(24px) saturate(250%);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+
+    .modal-content {
+      background: rgba(12, 20, 36, 0.75);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.2);
+      border-radius: 48px;
+      padding: 36px 32px;
+      max-width: 640px;
+      width: 100%;
+      box-shadow: 0 0 100px rgba(251,191,36,0.3), 0 30px 50px #000;
+      animation: sapphireRise 0.5s ease;
+      position: relative;
+    }
+
+    @keyframes sapphireRise {
+      0% { opacity: 0; transform: scale(0.96) translateY(20px); backdrop-filter: blur(0); }
+      100% { opacity: 1; transform: scale(1) translateY(0); backdrop-filter: blur(30px); }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 28px; right: 32px;
+      font-size: 2.4rem;
+      color: #a0b0c0;
+      cursor: pointer;
+      transition: 0.2s;
+      line-height: 1;
+    }
+    .close-modal:hover { color: white; text-shadow: 0 0 30px var(--pm-yellow); transform: rotate(90deg); }
+
+    .modal-title {
+      color: white;
+      font-size: 2.2rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 2px solid rgba(251,191,36,0.4);
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    #modalIcon { font-size: 2.6rem; filter: drop-shadow(0 0 12px var(--pm-yellow)); }
+
+    .question-label {
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #aaf0ff;
+      border-left: 5px solid var(--pm-yellow);
+      padding-left: 16px;
+      margin-bottom: 16px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+
+    .option-btn {
+      background: #1a2540;
+      border: 1px solid #30416a;
+      border-radius: 40px;
+      padding: 16px 12px;
+      font-weight: 400;
+      transition: all 0.15s;
+      color: #d0e0f0;
+      cursor: pointer;
+      text-align: center;
+    }
+    .option-btn:hover {
+      border-color: var(--pm-yellow);
+      background: #25324f;
+      box-shadow: 0 0 22px var(--pm-yellow);
+    }
+    .option-btn.selected {
+      background: var(--pm-yellow);
+      color: #0c1424;
+      font-weight: 600;
+      box-shadow: 0 0 35px var(--pm-yellow);
+      border-color: white;
+    }
+
+    .modal-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-btn:hover:not(:disabled) {
+      border-color: var(--pm-yellow);
+      box-shadow: 0 0 20px var(--pm-yellow);
+    }
+    .nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .whatsapp-btn {
+      background: #1c2a28;
+      border: 1px solid var(--whatsapp-solid);
+      border-radius: 60px;
+      padding: 16px 24px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: 0.2s;
+      box-shadow: 0 10px 25px -5px #000;
+      cursor: pointer;
+      color: white;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .whatsapp-btn:not(:disabled) {
+      background: linear-gradient(145deg, #075e54, #128c7e);
+      box-shadow: 0 0 35px #25d366, 0 10px 20px black;
+    }
+    .whatsapp-btn:not(:disabled):hover { transform: scale(1.02); background: #1bbd7a; }
+    .whatsapp-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .sticky-cta {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      max-width: 560px;
+      margin: 0 auto;
+      background: rgba(12, 20, 36, 0.7);
+      backdrop-filter: blur(35px) saturate(300%);
+      -webkit-backdrop-filter: blur(35px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-top: 1px solid rgba(255,255,255,0.3);
+      border-radius: 80px;
+      padding: 18px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 70px var(--pm-yellow), 0 20px 40px black;
+      z-index: 2000;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .sticky-cta:hover {
+      border-color: white;
+      box-shadow: 0 0 100px var(--pm-yellow), 0 25px 45px black;
+      transform: scale(1.02);
+    }
+    .sticky-cta span:last-child {
+      background: var(--pm-yellow);
+      color: #0c1424;
+      padding: 8px 24px;
+      border-radius: 60px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      box-shadow: 0 0 30px var(--pm-yellow);
+    }
+
+    @media (max-width: 600px) {
+      .modal-content { padding: 26px 18px; }
+      .options-grid { grid-template-columns: 1fr; }
+      .sticky-cta { padding: 12px 18px; }
+      .sticky-cta span:last-child { padding: 5px 16px; }
+      .service-card .card-header { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo-text">PM <span>SERVICIO TÉCNICO</span></div>
+    <div class="subhead">Eficiencia en Climatización</div>
+  </header>
+
+  <section class="hero">
+    <h1>PM SERVICIO TÉCNICO<br><span>Orden de Servicio Operativo · Reporte de Carga de Refrigerante</span></h1>
+    <p>⚡ respuesta 30 min · monterrey</p>
+    <div class="services-grid">
+      <button class="service-btn" onclick="openModal('minisplit')"><span class="service-icon">❄️</span><div>Climatización <small>mantenimiento / instalación / carga de gas / desinstalación</small></div></button>
+    </div>
+  </section>
+
+  <section class="trust-section">
+    <h2 class="trust-title">protocolo pm</h2>
+    <div class="protocol-grid">
+      <div class="protocol-step service-card" id="protocol1" onclick="toggleCard('protocol1')">
+        <div class="card-header" style="padding:0; flex-direction:column;">
+          <span class="step-icon">📡</span>
+          <h3>1. diagnóstico operativo</h3>
+          <p>evaluación profesional</p>
+        </div>
+        <div class="technical-layer" onclick="event.stopPropagation()">
+          <div style="padding:15px 0;">
+            <p class="text-sp-gray">Revisión detallada de tu equipo para identificar necesidades de mantenimiento, carga de gas o instalación.</p>
+            <button class="card-cta" onclick="openModal('minisplit'); event.stopPropagation();">
+              <i class="fa-regular fa-clipboard"></i> SOLICITAR DIAGNÓSTICO
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="protocol-step service-card" id="protocol2" onclick="toggleCard('protocol2')">
+        <div class="card-header" style="padding:0; flex-direction:column;">
+          <span class="step-icon">📋</span>
+          <h3>2. orden de servicio</h3>
+          <p>presupuesto detallado</p>
+        </div>
+        <div class="technical-layer" onclick="event.stopPropagation()">
+          <div style="padding:15px 0;">
+            <p class="text-sp-gray">Recibirás un desglose de los trabajos y materiales necesarios con precios claros.</p>
+            <button class="card-cta" onclick="openModal('minisplit'); event.stopPropagation();">
+              <i class="fa-regular fa-file-lines"></i> VER FORMATO
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="protocol-step service-card" id="protocol3" onclick="toggleCard('protocol3')">
+        <div class="card-header" style="padding:0; flex-direction:column;">
+          <span class="step-icon">🔧</span>
+          <h3>3. garantía de instalación</h3>
+          <p>trabajo certificado</p>
+        </div>
+        <div class="technical-layer" onclick="event.stopPropagation()">
+          <div style="padding:15px 0;">
+            <p class="text-sp-gray">Técnicos especializados realizan el trabajo con garantía por escrito.</p>
+            <button class="card-cta" onclick="openModal('minisplit'); event.stopPropagation();">
+              <i class="fa-regular fa-certificate"></i> VER GARANTÍA
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-detail">
+    <h2 class="section-title">servicios pm</h2>
+    <div class="section-subtitle">eficiencia · garantía · profesionalismo</div>
+    
+    <div class="services-list">
+      <!-- Mantenimiento -->
+      <div class="service-card" id="card-mantenimiento" onclick="toggleCard('card-mantenimiento')">
+        <div class="card-header">
+          <span class="service-item-icon">🧹</span>
+          <div>
+            <h3>Mantenimiento</h3>
+            <p>limpieza completa · <span style="color:#fbbf24;">$600</span></p>
+          </div>
+        </div>
+        <div class="technical-layer" onclick="event.stopPropagation()">
+          <div>
+            <span class="subservice-chip">Limpieza de filtros</span>
+            <span class="subservice-chip">Lavado de evaporador</span>
+            <span class="subservice-chip">Desinfección</span>
+            <button class="card-cta" onclick="openModal('minisplit'); event.stopPropagation();">
+              <i class="fa-regular fa-clipboard"></i> COTIZAR
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instalación -->
+      <div class="service-card" id="card-instalacion" onclick="toggleCard('card-instalacion')">
+        <div class="card-header">
+          <span class="service-item-icon">⚙️</span>
+          <div>
+            <h3>Instalación</h3>
+            <p>montaje profesional · <span style="color:#fbbf24;">$1,400</span></p>
+          </div>
+        </div>
+        <div class="technical-layer" onclick="event.stopPropagation()">
+          <div>
+            <span class="subservice-chip">Instalación completa</span>
+            <span class="subservice-chip">Conexiones eléctricas</span>
+            <span class="subservice-chip">Prueba de funcionamiento</span>
+            <button class="card-cta" onclick="openModal('minisplit'); event.stopPropagation();">
+              <i class="fa-regular fa-clipboard"></i> COTIZAR
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carga de gas -->
+      <div class="service-card" id="card-cargagas" onclick="toggleCard('card-cargagas')">
+        <div class="card-header">
+          <span class="service-item-icon">⛽</span>
+          <div>
+            <h3>Carga de gas</h3>
+            <p><span style="color:#fbbf24;">R410 · R22 · R32</span></p>
+          </div>
+        </div>
+        <div class="technical-layer" onclick="event.stopPropagation()">
+          <div>
+            <span class="subservice-chip">R410A · $180/lb</span>
+            <span class="subservice-chip">R22 · $220/lb</span>
+            <span class="subservice-chip">R32 · $200/lb</span>
+            <button class="card-cta" onclick="openModal('minisplit'); event.stopPropagation();">
+              <i class="fa-regular fa-clipboard"></i> COTIZAR
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desinstalación -->
+      <div class="service-card" id="card-desinstalacion" onclick="toggleCard('card-desinstalacion')">
+        <div class="card-header">
+          <span class="service-item-icon">🔨</span>
+          <div>
+            <h3>Desinstalación</h3>
+            <p>reubicación o cambio · <span style="color:#fbbf24;">$800</span></p>
+          </div>
+        </div>
+        <div class="technical-layer" onclick="event.stopPropagation()">
+          <div>
+            <span class="subservice-chip">Reubicación</span>
+            <span class="subservice-chip">Cambio de equipo</span>
+            <span class="subservice-chip">Recuperación de gas</span>
+            <button class="card-cta" onclick="openModal('minisplit'); event.stopPropagation();">
+              <i class="fa-regular fa-clipboard"></i> COTIZAR
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reparación (adicional) -->
+      <div class="service-card" id="card-reparacion" onclick="toggleCard('card-reparacion')">
+        <div class="card-header">
+          <span class="service-item-icon">🔧</span>
+          <div>
+            <h3>Reparación</h3>
+            <p>diagnóstico y corrección</p>
+          </div>
+        </div>
+        <div class="technical-layer" onclick="event.stopPropagation()">
+          <div>
+            <span class="subservice-chip">Diagnóstico profesional</span>
+            <span class="subservice-chip">Reparación de fallas</span>
+            <span class="subservice-chip">Cambio de componentes</span>
+            <button class="card-cta" onclick="openModal('minisplit'); event.stopPropagation();">
+              <i class="fa-regular fa-clipboard"></i> COTIZAR
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Venta de equipos (adicional) -->
+      <div class="service-card" id="card-venta" onclick="toggleCard('card-venta')">
+        <div class="card-header">
+          <span class="service-item-icon">🏷️</span>
+          <div>
+            <h3>Venta de equipos</h3>
+            <p>asesoría y suministro</p>
+          </div>
+        </div>
+        <div class="technical-layer" onclick="event.stopPropagation()">
+          <div>
+            <span class="subservice-chip">Asesoría personalizada</span>
+            <span class="subservice-chip">Equipos de alta eficiencia</span>
+            <span class="subservice-chip">Garantía de fábrica</span>
+            <button class="card-cta" onclick="openModal('minisplit'); event.stopPropagation();">
+              <i class="fa-regular fa-clipboard"></i> COTIZAR
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="diagnosticModal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2 class="modal-title"><span id="modalIcon">❄️</span><span id="modalServiceName">diagnóstico pm</span></h2>
+      
+      <div id="questionsContainer"></div>
+      
+      <div class="modal-nav">
+        <button class="nav-btn" id="prevBtn" onclick="previousStep()" disabled>
+          <i class="fas fa-arrow-left"></i> Anterior
+        </button>
+        <div class="text-[#fbbf24] font-bold" id="stepIndicator">Paso 1 / 6</div>
+        <button class="nav-btn" id="nextBtn" onclick="nextStep()">
+          Siguiente <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+      
+      <button class="whatsapp-btn" id="whatsappBtn" onclick="sendToWhatsApp()" disabled style="display: none;">
+        <span>📱</span><span>enviar ficha técnica a WhatsApp</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="sticky-cta" onclick="openModal('minisplit')">
+    <span>💬</span>
+    <span>cotizar ahora · 30 min</span>
+    <span>→</span>
+  </div>
+
+  <script>
+    const APPS_SCRIPT_URL = 'URL_DEL_BACKEND'; // Reemplazar con tu URL
+    
+    const serviceConfig = {
+      minisplit: { 
+        name: "climatización residencial", 
+        icon: "❄️", 
+        questions: [
+          { id: "p1", label: "tipo de servicio", options: ["Mantenimiento", "Instalación", "Carga de gas", "Desinstalación", "Reparación"] },
+          { id: "p2", label: "capacidad del equipo", options: ["1 ton", "1.5 ton", "2 ton", "+2 ton", "No tengo equipo"] },
+          { id: "p3", label: "urgencia", options: ["Hoy (emergencia)", "Mañana", "Esta semana", "Programar cita"] },
+          { id: "p4", label: "información adicional", options: [
+              "Tipo de gas: R410A", 
+              "Tipo de gas: R22", 
+              "Tipo de gas: R32",
+              "Desinstalación por reubicación",
+              "Desinstalación por cambio de equipo"
+            ] }
+        ]
+      }
+    };
+
+    // Servicios y precios de PM Servicio Técnico
+    const pmServices = [
+      { name: "Mantenimiento", price: 600 },
+      { name: "Instalación", price: 1400 },
+      { name: "Carga de gas R410A", price: 180 },
+      { name: "Carga de gas R22", price: 220 },
+      { name: "Carga de gas R32", price: 200 },
+      { name: "Desinstalación", price: 800 },
+      { name: "Reparación", price: 450 }
+    ];
+
+    let currentService = 'minisplit';
+    let answers = {};
+    let currentStep = 0;
+    let totalSteps = 4 + 2; // 4 preguntas + 2 datos cliente = 6
+    let clientData = {
+      nombre: '',
+      telefono: '',
+      direccion: ''
+    };
+
+    function toggleCard(id) {
+      const card = document.getElementById(id);
+      if (card) {
+        card.classList.toggle('expanded');
+      }
+    }
+
+    function openModal(key) {
+      currentService = key;
+      answers = {};
+      clientData = { nombre: '', telefono: '', direccion: '' };
+      currentStep = 0;
+      
+      const cfg = serviceConfig[key];
+      
+      document.getElementById('modalIcon').innerText = cfg.icon;
+      document.getElementById('modalServiceName').innerText = cfg.name;
+      document.getElementById('stepIndicator').innerText = `Paso 1 / ${totalSteps}`;
+      
+      renderStep();
+      
+      document.getElementById('diagnosticModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function renderStep() {
+      const cfg = serviceConfig[currentService];
+      const container = document.getElementById('questionsContainer');
+      const whatsappBtn = document.getElementById('whatsappBtn');
+      const modalNav = document.querySelector('.modal-nav');
+      
+      whatsappBtn.style.display = 'none';
+      modalNav.style.display = 'flex';
+      
+      if (currentStep < cfg.questions.length) {
+        const question = cfg.questions[currentStep];
+        let html = `
+          <div class="question-block">
+            <label class="question-label">${currentStep + 1}. ${question.label}</label>
+            <div class="options-grid" id="q-${question.id}">
+        `;
+        
+        question.options.forEach(opt => {
+          const isSelected = answers[question.id] === opt;
+          html += `<button class="option-btn ${isSelected ? 'selected' : ''}" onclick="selectOption('${question.id}', '${opt}', this)">${opt}</button>`;
+        });
+        
+        html += `</div></div>`;
+        container.innerHTML = html;
+        
+      } else if (currentStep < cfg.questions.length + 2) {
+        const dataStep = currentStep - cfg.questions.length;
+        let html = '';
+        
+        if (dataStep === 0) {
+          html = `
+            <div class="question-block">
+              <label class="question-label">${currentStep + 1}. Nombre completo</label>
+              <input type="text" id="clientNombre" placeholder="Ej: Juan Pérez" class="input-field w-full p-4 rounded-full text-base" value="${clientData.nombre}">
+            </div>`;
+        } else if (dataStep === 1) {
+          html = `
+            <div class="question-block">
+              <label class="question-label">${currentStep + 1}. Teléfono de contacto</label>
+              <input type="tel" id="clientTelefono" placeholder="Ej: 8112345678" class="input-field w-full p-4 rounded-full text-base" value="${clientData.telefono}">
+              <p class="text-xs text-[#fbbf24]/70 mt-2">* Necesario para coordinar el servicio</p>
+            </div>`;
+        }
+        
+        container.innerHTML = html;
+        
+        setTimeout(() => {
+          if (dataStep === 0 && clientData.nombre) document.getElementById('clientNombre').value = clientData.nombre;
+          if (dataStep === 1 && clientData.telefono) document.getElementById('clientTelefono').value = clientData.telefono;
+        }, 50);
+        
+      } else {
+        showSummary();
+      }
+      
+      updateNavButtons();
+      document.getElementById('stepIndicator').innerText = `Paso ${currentStep + 1} / ${totalSteps}`;
+    }
+
+    function selectOption(qId, val, btn) {
+      document.querySelectorAll(`#q-${qId} .option-btn`).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      answers[qId] = val;
+      updateNavButtons();
+    }
+
+    function nextStep() {
+      const cfg = serviceConfig[currentService];
+      
+      if (currentStep < cfg.questions.length) {
+        const question = cfg.questions[currentStep];
+        if (!answers[question.id]) {
+          alert('Por favor selecciona una opción antes de continuar.');
+          return;
+        }
+      } else if (currentStep < cfg.questions.length + 2) {
+        const dataStep = currentStep - cfg.questions.length;
+        
+        if (dataStep === 0) {
+          const nombre = document.getElementById('clientNombre')?.value.trim();
+          if (!nombre) {
+            alert('El nombre es obligatorio');
+            return;
+          }
+          clientData.nombre = nombre;
+        } else if (dataStep === 1) {
+          const telefono = document.getElementById('clientTelefono')?.value.trim();
+          if (!telefono) {
+            alert('El teléfono es obligatorio');
+            return;
+          }
+          clientData.telefono = telefono;
+        }
+      }
+      
+      if (currentStep < totalSteps - 1) {
+        currentStep++;
+        renderStep();
+      } else {
+        showSummary();
+      }
+    }
+
+    function previousStep() {
+      if (currentStep > 0) {
+        if (currentStep >= serviceConfig[currentService].questions.length) {
+          const dataStep = currentStep - serviceConfig[currentService].questions.length;
+          if (dataStep === 0 && document.getElementById('clientNombre')) {
+            clientData.nombre = document.getElementById('clientNombre').value;
+          } else if (dataStep === 1 && document.getElementById('clientTelefono')) {
+            clientData.telefono = document.getElementById('clientTelefono').value;
+          }
+        }
+        
+        currentStep--;
+        renderStep();
+      }
+    }
+
+    function showSummary() {
+      const cfg = serviceConfig[currentService];
+      
+      let summaryHtml = '<div class="question-block"><h3 class="text-xl text-white mb-4">📋 Resumen de tu solicitud</h3><div class="space-y-2 bg-black/30 p-4 rounded-2xl">';
+      
+      summaryHtml += `<div class="border-b border-[#fbbf24]/20 pb-2 mb-2">
+        <p class="text-[#fbbf24] font-bold">👤 DATOS DEL CLIENTE</p>
+        <p class="text-white">${clientData.nombre || 'No proporcionado'}</p>
+        ${clientData.telefono ? `<p class="text-sm text-gray-400">📞 ${clientData.telefono}</p>` : ''}
+      </div>`;
+      
+      summaryHtml += `<p class="text-[#fbbf24] font-bold mb-2">🔧 ORDEN DE SERVICIO OPERATIVO</p>`;
+      cfg.questions.forEach(q => {
+        summaryHtml += `<div class="flex justify-between border-b border-white/10 py-2">
+          <span class="text-gray-400">${q.label}:</span>
+          <span class="text-white font-bold">${answers[q.id] || '—'}</span>
+        </div>`;
+      });
+      
+      // Agregar tabla de servicios
+      summaryHtml += `<p class="text-[#fbbf24] font-bold mt-4 mb-2">💰 REPORTE DE CARGOS</p>`;
+      summaryHtml += `<div class="space-y-1">`;
+      pmServices.forEach(service => {
+        summaryHtml += `<div class="flex justify-between text-sm">
+          <span class="text-gray-400">${service.name}:</span>
+          <span class="text-white font-bold">$${service.price}</span>
+        </div>`;
+      });
+      summaryHtml += `</div>`;
+      summaryHtml += `<p class="text-xs text-gray-500 mt-2">* Precios sujetos a confirmación en sitio</p>`;
+      
+      summaryHtml += '</div></div>';
+      
+      document.getElementById('questionsContainer').innerHTML = summaryHtml;
+      document.querySelector('.modal-nav').style.display = 'none';
+      
+      const whatsappBtn = document.getElementById('whatsappBtn');
+      whatsappBtn.style.display = 'flex';
+      whatsappBtn.disabled = false;
+      whatsappBtn.innerHTML = '<span>📱</span><span>enviar ficha técnica a WhatsApp</span>';
+    }
+
+    function updateNavButtons() {
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      prevBtn.disabled = currentStep === 0;
+      
+      const cfg = serviceConfig[currentService];
+      
+      if (currentStep < cfg.questions.length) {
+        const question = cfg.questions[currentStep];
+        const hasAnswer = answers[question.id] !== undefined;
+        nextBtn.disabled = !hasAnswer;
+        nextBtn.innerHTML = 'Siguiente <i class="fas fa-arrow-right"></i>';
+      } else if (currentStep < cfg.questions.length + 2) {
+        nextBtn.disabled = false;
+        if (currentStep === totalSteps - 1) {
+          nextBtn.innerHTML = 'Ver resumen <i class="fas fa-check"></i>';
+        } else {
+          nextBtn.innerHTML = 'Siguiente <i class="fas fa-arrow-right"></i>';
+        }
+      }
+    }
+
+    async function sendToWhatsApp() {
+      const cfg = serviceConfig[currentService];
+      const phone = '5218120116696'; // WhatsApp de PM Servicio Técnico
+      
+      const ahora = new Date();
+      const year = ahora.getFullYear().toString().slice(-2);
+      const month = (ahora.getMonth() + 1).toString().padStart(2, '0');
+      const day = ahora.getDate().toString().padStart(2, '0');
+      const random = Math.floor(Math.random() * 9000 + 1000);
+      const folio = `PM-${year}${month}${day}-${random}`;
+      
+      const datosParaCloud = {
+        marca: 'PM_SERVICIO',
+        servicio: cfg.name,
+        nombreCliente: clientData.nombre,
+        telefono: clientData.telefono,
+        direccion: clientData.direccion || 'Por confirmar',
+        respuestas: answers,
+        folio: folio
+      };
+      
+      cfg.questions.forEach((q, index) => {
+        datosParaCloud[`pregunta${index+1}`] = q.label;
+        datosParaCloud[`respuesta${index+1}`] = answers[q.id] || '';
+      });
+      
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datosParaCloud)
+        });
+        console.log('✅ Datos guardados con folio:', folio);
+      } catch (error) {
+        console.error('Error al guardar:', error);
+      }
+      
+      let mensaje = `❄️ *ORDEN DE SERVICIO - PM SERVICIO TÉCNICO* ❄️\n\n`;
+      mensaje += `📋 *FOLIO:* ${folio}\n`;
+      mensaje += `👤 *CLIENTE:* ${clientData.nombre}\n`;
+      mensaje += `📞 *TELÉFONO:* ${clientData.telefono}\n`;
+      mensaje += `📍 *DIRECCIÓN:* ${clientData.direccion || 'Por confirmar'}\n`;
+      mensaje += `🔨 *SERVICIO:* Climatización Residencial\n\n`;
+      mensaje += `📊 *ORDEN DE SERVICIO OPERATIVO:*\n`;
+      
+      cfg.questions.forEach(q => {
+        mensaje += `• ${q.label}: *${answers[q.id] || '—'}*\n`;
+      });
+      
+      mensaje += `\n💰 *REPORTE DE CARGOS:*\n`;
+      pmServices.forEach(service => {
+        mensaje += `• ${service.name}: $${service.price}\n`;
+      });
+      
+      mensaje += `\n⏱️ *FECHA:* ${ahora.toLocaleDateString('es-MX')}\n`;
+      mensaje += `🕐 *HORA:* ${ahora.toLocaleTimeString('es-MX')}\n\n`;
+      mensaje += `📌 El técnico usará este folio (${folio}) para dar seguimiento.\n`;
+      mensaje += `_Espera nuestra confirmación._`;
+      
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+      
+      setTimeout(closeModal, 1000);
+    }
+
+    function closeModal(e) {
+      if (e && e.target !== e.currentTarget) return;
+      document.getElementById('diagnosticModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      const modalNav = document.querySelector('.modal-nav');
+      if (modalNav) modalNav.style.display = 'flex';
+      document.getElementById('whatsappBtn').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => { 
+      if (e.key === 'Escape') closeModal(); 
+    });
+  </script>
+</body>
+</html>
