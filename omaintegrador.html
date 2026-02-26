@@ -347,7 +347,7 @@
                 <i class="fas fa-tools"></i> FAMILIA DE SERVICIO
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-                <button onclick="selectService('minisplit')" id="svc-minisplit" class="service-card">
+                <button onclick="selectService('minisplit')" id="svc-minisplit" class="service-card active">
                     <i class="fas fa-snowflake text-2xl mb-2 text-[#d93b3b]"></i>
                     <span class="text-sm font-semibold block">Minisplit</span>
                 </button>
@@ -528,7 +528,7 @@
     </div>
 
     <script>
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw7WBiy93_1yC6pJ2Y7DIzX5pgBXQaITvt5nxzBaNSpu32AZuyqnoZWSIX-TwhESLHU/exec'; // Reemplazar con tu URL
+        const APPS_SCRIPT_URL = 'URL_DEL_BACKEND'; // Reemplazar con tu URL
         const API_TOKEN = 'OMA_TOKEN';
         
         const serviceFamily = {
@@ -545,17 +545,46 @@
             'general': ['general', 'asesoria', 'consulta']
         };
 
-        // Catálogo OMA Servicios
+        // Catálogo OMA Servicios - ORGANIZADO POR CATEGORÍA
         const omaCatalog = [
-            { desc: 'Instalación de minisplit', precio: 1400 },
-            { desc: 'Mantenimiento de minisplit', precio: 600 },
-            { desc: 'Instalación de UPS (5-10 KVA)', precio: 1800 },
-            { desc: 'Mantenimiento de UPS', precio: 850 },
-            { desc: 'Instalación de planta eléctrica', precio: 2500 },
-            { desc: 'Mantenimiento de planta', precio: 1200 },
-            { desc: 'Carga de gas R410A (lb)', precio: 180 },
-            { desc: 'Cambio de baterías para UPS', precio: 950 },
-            { desc: 'Asesoría técnica especializada', precio: 500 }
+            // MINISPLITS
+            { desc: 'Instalación de minisplit (1-2 ton)', precio: 1400, categoria: 'minisplit' },
+            { desc: 'Instalación de minisplit (3-5 ton)', precio: 2200, categoria: 'minisplit' },
+            { desc: 'Mantenimiento de minisplit (1-2 ton)', precio: 600, categoria: 'minisplit' },
+            { desc: 'Mantenimiento de minisplit (3-5 ton)', precio: 900, categoria: 'minisplit' },
+            { desc: 'Reparación de minisplit', precio: 450, categoria: 'minisplit' },
+            { desc: 'Carga de gas R410A (lb)', precio: 180, categoria: 'minisplit' },
+            { desc: 'Carga de gas R32 (lb)', precio: 200, categoria: 'minisplit' },
+            { desc: 'Diagnóstico de minisplit', precio: 300, categoria: 'minisplit' },
+            
+            // UPS
+            { desc: 'Instalación de UPS 5 KVA', precio: 1800, categoria: 'ups' },
+            { desc: 'Instalación de UPS 10 KVA', precio: 2500, categoria: 'ups' },
+            { desc: 'Instalación de UPS 20 KVA', precio: 3800, categoria: 'ups' },
+            { desc: 'Mantenimiento de UPS', precio: 850, categoria: 'ups' },
+            { desc: 'Cambio de baterías para UPS', precio: 950, categoria: 'ups' },
+            { desc: 'Reparación de UPS', precio: 1200, categoria: 'ups' },
+            { desc: 'Diagnóstico de UPS', precio: 500, categoria: 'ups' },
+            
+            // PLANTAS ELÉCTRICAS
+            { desc: 'Instalación de planta eléctrica (gasolina)', precio: 2500, categoria: 'planta' },
+            { desc: 'Instalación de planta eléctrica (diésel)', precio: 3200, categoria: 'planta' },
+            { desc: 'Instalación de planta eléctrica (gas LP/natural)', precio: 2800, categoria: 'planta' },
+            { desc: 'Mantenimiento de planta eléctrica', precio: 1200, categoria: 'planta' },
+            { desc: 'Reparación de planta eléctrica', precio: 1500, categoria: 'planta' },
+            { desc: 'Automatización de transferencia', precio: 2000, categoria: 'planta' },
+            { desc: 'Diagnóstico de planta', precio: 600, categoria: 'planta' },
+            
+            // SERVICIOS ELÉCTRICOS
+            { desc: 'Instalación eléctrica para UPS/planta', precio: 1200, categoria: 'general' },
+            { desc: 'Tablero de transferencia', precio: 1800, categoria: 'general' },
+            { desc: 'Protecciones eléctricas', precio: 800, categoria: 'general' },
+            
+            // ASESORÍA
+            { desc: 'Asesoría técnica especializada', precio: 500, categoria: 'general' },
+            { desc: 'Dimensionamiento de UPS', precio: 400, categoria: 'general' },
+            { desc: 'Cálculo de carga para planta', precio: 450, categoria: 'general' },
+            { desc: 'Estudio de eficiencia energética', precio: 1200, categoria: 'general' }
         ];
 
         let currentService = 'minisplit';
@@ -671,7 +700,12 @@
             
             showToast('Cargando materiales...');
             
-            items = omaCatalog.slice(0, 5).map(item => ({
+            // Filtrar por categoría según el servicio seleccionado
+            const filteredCatalog = omaCatalog.filter(item => 
+                item.categoria === currentService || item.categoria === 'general'
+            );
+            
+            items = filteredCatalog.slice(0, 6).map(item => ({
                 id: Date.now() + Math.random(),
                 desc: item.desc,
                 qty: 1,
@@ -680,7 +714,7 @@
             
             renderItems();
             calculateTotal();
-            showToast(`${items.length} materiales cargados`);
+            showToast(`${items.length} materiales cargados para ${serviceFamily[currentService]}`);
         }
 
         function selectService(service) {
