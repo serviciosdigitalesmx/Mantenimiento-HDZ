@@ -524,7 +524,7 @@
     </div>
 
     <script>
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYnMfilrfBHWjZ5Wqv15Az249nVs0brRC0Atvtyro9F-Ey2A_X1vRy8DspaBEmmc1Y/exec'; // ← Reemplazar con tu URL
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3PNCZcwxKiEVpRtlDa9yx31KWK_UjCDWR0BcYL9Fb4sWQ2bRn89-_EwEe9MwAtAYv/exec';
         const API_TOKEN = 'HDZ2025_SECRET_TOKEN_CAMBIAR_EN_PRODUCCION';
         
         const serviceFamily = {
@@ -535,7 +535,7 @@
             'clima': ['clima', 'minisplit', 'aire', 'refrigeracion', 'frio', 'calor', 'hvac']
         };
 
-        // Catálogo HDZ con precios
+        // Catálogo HDZ con precios (solo para búsqueda)
         const hdzCatalog = [
             { id: 1, familia: 'Mantenimiento', desc: 'Revisión de equipo', precio: 300 },
             { id: 2, familia: 'Instalación', desc: 'Desinstalación (mano de obra)', precio: 800 },
@@ -553,7 +553,7 @@
 
         let currentService = 'clima';
         let items = [];
-        let materialDatabase = hdzCatalog; // Precargar con catálogo HDZ
+        let materialDatabase = hdzCatalog;
         let currentFolio = null;
         let cotizacionData = null;
         let pdfDoc = null;
@@ -639,7 +639,6 @@
                             currentService = folioService;
                         }
                         
-                        // Cargar diagnóstico
                         if (cotizacionData.Respuesta1) document.getElementById('diagnosticoServicio').textContent = cotizacionData.Respuesta1;
                         if (cotizacionData.Respuesta2) document.getElementById('diagnosticoCapacidad').textContent = cotizacionData.Respuesta2;
                         if (cotizacionData.Respuesta3) document.getElementById('diagnosticoUrgencia').textContent = cotizacionData.Respuesta3;
@@ -658,7 +657,7 @@
         }
 
         async function loadMaterialsFromCloud() {
-            // Cargar catálogo HDZ directamente
+            // Cargar catálogo HDZ desde la nube (simulado con hdzCatalog)
             items = hdzCatalog.slice(0, 6).map(item => ({
                 id: Date.now() + Math.random(),
                 desc: item.desc,
@@ -807,16 +806,13 @@
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
 
-                // Fondo oscuro elegante
                 doc.setFillColor(10, 13, 20);
                 doc.rect(0, 0, 210, 297, 'F');
 
-                // Borde decorativo
                 doc.setDrawColor(255, 107, 53);
                 doc.setLineWidth(0.5);
                 doc.rect(5, 5, 200, 287);
 
-                // Header con logo
                 doc.setFillColor(0, 78, 152);
                 doc.rect(10, 10, 190, 30, 'F');
                 doc.setTextColor(255, 255, 255);
@@ -834,7 +830,6 @@
                 doc.setFont('helvetica', 'normal');
                 doc.text(fecha, 180, 35, { align: 'right' });
 
-                // Datos del cliente
                 doc.setTextColor(255, 107, 53);
                 doc.setFontSize(14);
                 doc.setFont('helvetica', 'bold');
@@ -849,7 +844,6 @@
                 if (phone) doc.text(`Teléfono: ${phone}`, 15, 74);
                 if (address) doc.text(`Dirección: ${address}`, 15, 81);
 
-                // Diagnóstico
                 doc.setTextColor(255, 107, 53);
                 doc.setFontSize(14);
                 doc.setFont('helvetica', 'bold');
@@ -870,7 +864,6 @@
                 doc.text(document.getElementById('diagnosticoUrgencia').textContent, 55, 119);
                 doc.text(document.getElementById('diagnosticoEquipos').textContent, 150, 119);
 
-                // Tabla de conceptos
                 doc.setTextColor(255, 107, 53);
                 doc.setFontSize(14);
                 doc.setFont('helvetica', 'bold');
@@ -916,7 +909,6 @@
 
                 const finalY = doc.previousAutoTable.finalY + 10;
 
-                // Totales
                 doc.setFillColor(20, 25, 35);
                 doc.roundedRect(120, finalY - 5, 70, 30, 3, 3, 'F');
                 doc.setDrawColor(255, 107, 53);
@@ -936,7 +928,6 @@
                 doc.text('TOTAL:', 125, finalY + 22);
                 doc.text('$' + total.toFixed(2), 185, finalY + 22, { align: 'right' });
 
-                // Términos
                 doc.setDrawColor(255, 107, 53);
                 doc.line(15, 245, 195, 245);
                 
@@ -947,7 +938,6 @@
                 doc.text('• 50% de anticipo', 15, 264);
                 doc.text('• Precios incluyen IVA', 15, 269);
                 
-                // Firmas
                 doc.text('_________________________', 35, 280);
                 doc.text('Técnico responsable', 45, 287, { align: 'center' });
                 doc.text('_________________________', 135, 280);
@@ -1038,19 +1028,14 @@
             setTimeout(() => toast.classList.add('opacity-0'), 2800);
         }
 
-        // Inicialización
+        // Inicialización - SIN DATOS PRECARGADOS
         document.addEventListener('DOMContentLoaded', () => {
             loadFromFolio().then(() => {
                 if (!currentFolio) {
                     selectService('clima');
-                    // Precargar algunos servicios de ejemplo
-                    items = hdzCatalog.slice(0, 3).map(item => ({
-                        id: Date.now() + Math.random(),
-                        desc: item.desc,
-                        qty: 1,
-                        price: item.precio
-                    }));
                 }
+                // items se inicializa vacío
+                items = [];
                 renderItems();
                 calculateTotal();
             });
