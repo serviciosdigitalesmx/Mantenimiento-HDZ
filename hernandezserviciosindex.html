@@ -1124,16 +1124,19 @@
       const month = (ahora.getMonth() + 1).toString().padStart(2, '0');
       const day = ahora.getDate().toString().padStart(2, '0');
       const random = Math.floor(Math.random() * 9000 + 1000);
-      const folio = `HZ-${year}${month}${day}-${random}`;
+      
+      // ✅ CORREGIDO: Ahora usa HER-SV- en lugar de HZ-
+      const folio = `HER-SV-${year}${month}${day}-${random}`;
       
       const datosParaCloud = {
-        marca: 'HERNANDEZ',
+        // ✅ CORREGIDO: Ahora usa HERNANDEZ_SV en lugar de HERNANDEZ
+        marca: 'HERNANDEZ_SV',
         servicio: cfg.name,
         nombreCliente: clientData.nombre,
         telefono: clientData.telefono,
         direccion: clientData.direccion || 'Por confirmar',
         respuestas: answers,
-        folio: folio
+        folio: folio // ✅ IMPORTANTE: Enviar el folio
       };
       
       cfg.questions.forEach((q, index) => {
