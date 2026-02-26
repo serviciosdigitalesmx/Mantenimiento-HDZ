@@ -869,7 +869,7 @@
   </div>
 
   <script>
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw7WBiy93_1yC6pJ2Y7DIzX5pgBXQaITvt5nxzBaNSpu32AZuyqnoZWSIX-TwhESLHU/exec'; // Reemplazar con tu URL
+    const APPS_SCRIPT_URL = 'URL_DEL_BACKEND'; // Reemplazar con tu URL
     
     const serviceConfig = {
       minisplit: { 
@@ -911,17 +911,6 @@
         ]
       }
     };
-
-    // Servicios y precios de OMA Servicios
-    const omaServices = [
-      { name: "Instalación de minisplit", price: 1400 },
-      { name: "Mantenimiento de minisplit", price: 600 },
-      { name: "Instalación de UPS (5-10 KVA)", price: 1800 },
-      { name: "Mantenimiento de UPS", price: 850 },
-      { name: "Instalación de planta eléctrica", price: 2500 },
-      { name: "Mantenimiento de planta", price: 1200 },
-      { name: "Asesoría técnica especializada", price: 500 }
-    ];
 
     let currentService = null;
     let answers = {};
@@ -1097,15 +1086,44 @@
         </div>`;
       });
       
-      // Agregar tabla de servicios
+      // Agregar tabla de servicios específicos según el tipo seleccionado
       summaryHtml += `<p class="text-[#d93b3b] font-bold mt-4 mb-2">💰 PROTOCOLO DE RESPALDO ENERGÉTICO</p>`;
       summaryHtml += `<div class="space-y-1">`;
-      omaServices.forEach(service => {
-        summaryHtml += `<div class="flex justify-between text-sm">
-          <span class="text-gray-400">${service.name}:</span>
-          <span class="text-white font-bold">$${service.price}</span>
-        </div>`;
-      });
+      
+      if (currentService === 'ups') {
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de UPS (5-10 KVA):</span><span class="text-white font-bold">$1,800</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de UPS (20 KVA):</span><span class="text-white font-bold">$3,800</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Mantenimiento de UPS:</span><span class="text-white font-bold">$850</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Cambio de baterías para UPS:</span><span class="text-white font-bold">$950</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Reparación de UPS:</span><span class="text-white font-bold">$1,200</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Diagnóstico de UPS:</span><span class="text-white font-bold">$500</span></div>`;
+      } 
+      else if (currentService === 'planta') {
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de planta (gasolina):</span><span class="text-white font-bold">$2,500</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de planta (diésel):</span><span class="text-white font-bold">$3,200</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de planta (gas):</span><span class="text-white font-bold">$2,800</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Mantenimiento de planta:</span><span class="text-white font-bold">$1,200</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Reparación de planta:</span><span class="text-white font-bold">$1,500</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Automatización de transferencia:</span><span class="text-white font-bold">$2,000</span></div>`;
+      }
+      else if (currentService === 'minisplit') {
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de minisplit (1-2 ton):</span><span class="text-white font-bold">$1,400</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de minisplit (3-5 ton):</span><span class="text-white font-bold">$2,200</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Mantenimiento de minisplit:</span><span class="text-white font-bold">$600</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Reparación de minisplit:</span><span class="text-white font-bold">$450</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Carga de gas R410A (lb):</span><span class="text-white font-bold">$180</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Diagnóstico:</span><span class="text-white font-bold">$300</span></div>`;
+      }
+      else {
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de UPS (5-10 KVA):</span><span class="text-white font-bold">$1,800</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Mantenimiento de UPS:</span><span class="text-white font-bold">$850</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de planta eléctrica:</span><span class="text-white font-bold">$2,500</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Mantenimiento de planta:</span><span class="text-white font-bold">$1,200</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Instalación de minisplit:</span><span class="text-white font-bold">$1,400</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Mantenimiento de minisplit:</span><span class="text-white font-bold">$600</span></div>`;
+        summaryHtml += `<div class="flex justify-between text-sm"><span class="text-gray-400">Asesoría técnica especializada:</span><span class="text-white font-bold">$500</span></div>`;
+      }
+      
       summaryHtml += `</div>`;
       summaryHtml += `<p class="text-xs text-gray-500 mt-2">* Precios sujetos a confirmación en sitio</p>`;
       
@@ -1194,9 +1212,41 @@
       });
       
       mensaje += `\n💰 *PROTOCOLO DE RESPALDO ENERGÉTICO:*\n`;
-      omaServices.forEach(service => {
-        mensaje += `• ${service.name}: $${service.price}\n`;
-      });
+      
+      // Mostrar solo los servicios correspondientes al tipo seleccionado
+      if (currentService === 'ups') {
+        mensaje += `• Instalación de UPS (5-10 KVA): *$1,800*\n`;
+        mensaje += `• Instalación de UPS (20 KVA): *$3,800*\n`;
+        mensaje += `• Mantenimiento de UPS: *$850*\n`;
+        mensaje += `• Cambio de baterías para UPS: *$950*\n`;
+        mensaje += `• Reparación de UPS: *$1,200*\n`;
+        mensaje += `• Diagnóstico de UPS: *$500*\n`;
+      } 
+      else if (currentService === 'planta') {
+        mensaje += `• Instalación de planta eléctrica (gasolina): *$2,500*\n`;
+        mensaje += `• Instalación de planta eléctrica (diésel): *$3,200*\n`;
+        mensaje += `• Instalación de planta eléctrica (gas): *$2,800*\n`;
+        mensaje += `• Mantenimiento de planta: *$1,200*\n`;
+        mensaje += `• Reparación de planta: *$1,500*\n`;
+        mensaje += `• Automatización de transferencia: *$2,000*\n`;
+      }
+      else if (currentService === 'minisplit') {
+        mensaje += `• Instalación de minisplit (1-2 ton): *$1,400*\n`;
+        mensaje += `• Instalación de minisplit (3-5 ton): *$2,200*\n`;
+        mensaje += `• Mantenimiento de minisplit: *$600*\n`;
+        mensaje += `• Reparación de minisplit: *$450*\n`;
+        mensaje += `• Carga de gas R410A (lb): *$180*\n`;
+        mensaje += `• Diagnóstico: *$300*\n`;
+      }
+      else {
+        mensaje += `• Instalación de UPS (5-10 KVA): *$1,800*\n`;
+        mensaje += `• Mantenimiento de UPS: *$850*\n`;
+        mensaje += `• Instalación de planta eléctrica: *$2,500*\n`;
+        mensaje += `• Mantenimiento de planta: *$1,200*\n`;
+        mensaje += `• Instalación de minisplit: *$1,400*\n`;
+        mensaje += `• Mantenimiento de minisplit: *$600*\n`;
+        mensaje += `• Asesoría técnica especializada: *$500*\n`;
+      }
       
       mensaje += `\n⏱️ *FECHA:* ${ahora.toLocaleDateString('es-MX')}\n`;
       mensaje += `🕐 *HORA:* ${ahora.toLocaleTimeString('es-MX')}\n\n`;
