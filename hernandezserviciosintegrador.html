@@ -322,7 +322,7 @@
                 <i class="fas fa-search"></i> BUSCAR COTIZACIÓN
             </div>
             <div class="folio-search">
-                <input type="text" id="folioSearchInput" placeholder="Ingresa el folio (ej: HZ-260226-1234)">
+                <input type="text" id="folioSearchInput" placeholder="Ingresa el folio (ej: HER-SV-260226-1234)">
                 <button onclick="loadFolioFromInput()">
                     <i class="fas fa-arrow-right mr-2"></i> Cargar
                 </button>
@@ -517,7 +517,7 @@
 
     <script>
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw7WBiy93_1yC6pJ2Y7DIzX5pgBXQaITvt5nxzBaNSpu32AZuyqnoZWSIX-TwhESLHU/exec'; // Reemplazar con tu URL
-        const API_TOKEN = 'HERNANDEZ_TOKEN';
+        const API_TOKEN = 'HERNANDEZ_SV_TOKEN'; // ✅ ACTUALIZADO
         
         const serviceFamily = {
             'minisplit': 'Climatización'
@@ -792,7 +792,7 @@
             
             const client = document.getElementById('clientName').value.trim() || 'Cliente';
             const { subtotal, tax, labor, total, taxRate } = calculateTotal();
-            const folio = currentFolio || ('HZ-' + Date.now().toString().slice(-6));
+            const folio = currentFolio || ('HER-SV-' + Date.now().toString().slice(-6)); // ✅ ACTUALIZADO
             const fecha = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
             const address = document.getElementById('clientAddress').value || '';
             const phone = document.getElementById('clientPhone').value || '';
