@@ -1172,6 +1172,7 @@
         console.error('Error al guardar en nube:', error);
       }
       
+      // Mensaje SIN HTML, solo texto plano
       let mensaje = `❄️ *NUEVA COTIZACIÓN - HDZ MANTENIMIENTO* ❄️\n\n`;
       mensaje += `📋 *FOLIO:* ${folio}\n`;
       mensaje += `👤 *CLIENTE:* ${clientData.nombre}\n`;
@@ -1186,7 +1187,8 @@
       
       mensaje += `\n💰 *SERVICIOS HDZ (precios base):*\n`;
       hdzServices.forEach(service => {
-        mensaje += `• ${service.name}: <span style="text-decoration:line-through;">$${service.oldPrice}</span> *$${service.price}*\n`;
+        // SIN etiquetas HTML, solo texto plano
+        mensaje += `• ${service.name}: $${service.oldPrice} → *$${service.price}*\n`;
       });
       
       mensaje += `\n⏱️ *FECHA:* ${ahora.toLocaleDateString('es-MX')}\n`;
